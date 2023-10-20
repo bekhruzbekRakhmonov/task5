@@ -36,7 +36,7 @@ app.use(
         },
     }),
 )
-v1Router.use('/users', authenticateToken, userRouter)
+v1Router.use('/generate-data', authenticateToken, userRouter)
 v1Router.use('/auth', authRouter)
 
 app.use('/api', v1Router)
