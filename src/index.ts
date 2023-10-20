@@ -11,7 +11,7 @@ import exceptionFilter from './middleware/exception'
 dotenv.config()
 
 const app: Express = express()
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 6060
 
 const v1Router = express.Router()
 
