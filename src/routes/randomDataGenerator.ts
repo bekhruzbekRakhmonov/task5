@@ -2,8 +2,8 @@ import express, { Router, Request, Response, NextFunction } from "express";
 import { config } from "dotenv";
 import axios from "axios";
 import { isValidRegion } from "../validators/users";
-import { generateErrors } from "../services/users";
 import { RandomUser } from "../interfaces/randomUser";
+import { generateErrors } from "../services/randomDataGenerator";
 
 config();
 

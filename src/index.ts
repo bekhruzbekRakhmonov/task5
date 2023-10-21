@@ -2,8 +2,7 @@ import express, { Express } from 'express'
 import cors from 'cors';
 import morgan from 'morgan'
 import dotenv from 'dotenv'
-import swaggerUi from 'swagger-ui-express'
-import userRouter from './routes/users'
+import dataGeneratorRouter from './routes/randomDataGenerator'
 import authRouter from './routes/auth'
 import { authenticateToken } from './middleware/auth'
 import exceptionFilter from './middleware/exception'
@@ -27,16 +26,7 @@ app.use(express.static('public'))
 
 app.use(exceptionFilter)
 
-app.use(
-    '/docs',
-    swaggerUi.serve,
-    swaggerUi.setup(undefined, {
-        swaggerOptions: {
-            url: '/swagger.json',
-        },
-    }),
-)
-v1Router.use('/generate-data', authenticateToken, userRouter)
+v1Router.use('/generate-data', authenticateToken, dataGeneratorRouter)
 v1Router.use('/auth', authRouter)
 
 app.use('/api', v1Router)
