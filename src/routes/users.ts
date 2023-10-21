@@ -3,29 +3,12 @@ import { config } from "dotenv";
 import axios from "axios";
 import { isValidRegion } from "../validators/users";
 import { generateErrors } from "../services/users";
+import { RandomUser } from "../interfaces/randomUser";
 
 config();
 
 const router: Router = express.Router();
 const RANDOMUSER_API_URL: string = "https://randomuser.me/api/";
-
-interface User {
-	login: {
-		uuid: string;
-	};
-	name: {
-		first: string;
-		last: string;
-	};
-	location: {
-		street: {
-			name: string;
-		};
-		city: string;
-		country: string;
-	};
-	phone: string;
-}
 
 router.get(
 	"/",
@@ -38,11 +21,15 @@ router.get(
 		};
 
 		try {
-			res.header("Cache-Control", "no-store, max-age=0");
-			if (isValidRegion(region)) {
+			if (parseInt(errors) > 10) {
+				return res
+					.status(422)
+					.json({ message: "Error amount limit is 10" });
+			}
+			if (!isValidRegion(region)) {
 				return res
 					.status(400)
-					.json({ error: "Invalid or unsupported region" });
+					.json({ message: "Invalid or unsupported region" });
 			}
 
 			const response = await axios.get(
@@ -53,12 +40,14 @@ router.get(
 				name: string;
 				address: string;
 				phone: string;
-			}> = (response.data.results as User[]).map((user: User) => ({
-				randomIdentifier: user.login.uuid,
-				name: `${user.name.first} ${user.name.last}`,
-				address: `${user.location.street.name}, ${user.location.city}, ${user.location.country}`,
-				phone: user.phone,
-			}));
+			}> = (response.data.results as RandomUser[]).map(
+				(user: RandomUser) => ({
+					randomIdentifier: user.login.uuid,
+					name: `${user.name.first} ${user.name.last}`,
+					address: `${user.location.street.name}, ${user.location.city}, ${user.location.country}`,
+					phone: user.phone,
+				})
+			);
 
 			const users = [];
 			for (let userData of usersData) {
