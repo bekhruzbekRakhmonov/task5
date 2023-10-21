@@ -3,8 +3,6 @@ import cors from 'cors';
 import morgan from 'morgan'
 import dotenv from 'dotenv'
 import dataGeneratorRouter from './routes/randomDataGenerator'
-import authRouter from './routes/auth'
-import { authenticateToken } from './middleware/auth'
 import exceptionFilter from './middleware/exception'
 
 dotenv.config()
@@ -26,8 +24,7 @@ app.use(express.static('public'))
 
 app.use(exceptionFilter)
 
-v1Router.use('/generate-data', authenticateToken, dataGeneratorRouter)
-v1Router.use('/auth', authRouter)
+v1Router.use('/generate-data', dataGeneratorRouter)
 
 app.use('/api', v1Router)
 

@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"build": "npx tsc",
-		"start": "node dist/index.js",
+		"start": "yarn build && node dist/index.js",
 		"migrate": "yarn build && node dist/migrate.js",
 		"dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
 		"format": "prettier --write ."
@@ -14,6 +14,7 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
+		"@faker-js/faker": "^8.2.0",
 		"@types/cors": "^2.8.14",
 		"@types/morgan": "^1.9.6",
 		"@types/node": "^20.8.6",

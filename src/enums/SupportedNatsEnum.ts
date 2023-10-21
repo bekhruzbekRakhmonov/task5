@@ -1,10 +1,11 @@
+import { } from "@faker-js/faker";
+
 export enum SupportedNats {
 	AU = "AU",
 	BR = "BR",
 	CA = "CA",
 	CH = "CH",
 	DE = "DE",
-	DK = "DK",
 	ES = "ES",
 	FI = "FI",
 	FR = "FR",
@@ -15,7 +16,6 @@ export enum SupportedNats {
 	MX = "MX",
 	NL = "NL",
 	NO = "NO",
-	NZ = "NZ",
 	RS = "RS",
 	TR = "TR",
 	UA = "UA",
@@ -28,7 +28,6 @@ export const SupportedNatsMap: Record<SupportedNats, string> = {
 	[SupportedNats.CA]: "Canada",
 	[SupportedNats.CH]: "Switzerland",
 	[SupportedNats.DE]: "Germany",
-	[SupportedNats.DK]: "Denmark",
 	[SupportedNats.ES]: "Spain",
 	[SupportedNats.FI]: "Finland",
 	[SupportedNats.FR]: "France",
@@ -39,7 +38,6 @@ export const SupportedNatsMap: Record<SupportedNats, string> = {
 	[SupportedNats.MX]: "Mexico",
 	[SupportedNats.NL]: "Netherlands",
 	[SupportedNats.NO]: "Norway",
-	[SupportedNats.NZ]: "New Zealand",
 	[SupportedNats.RS]: "Serbia",
 	[SupportedNats.TR]: "Turkey",
 	[SupportedNats.UA]: "Ukraine",

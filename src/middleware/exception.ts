@@ -1,10 +1,9 @@
-import { NextFunction, Response } from 'express'
+import { NextFunction, Response, Request } from 'express'
 import HttpException from '../exceptions/http-exception'
-import RequestWithUser from '../interfaces/requestWithUser'
 
 export function exceptionFilter(
     err: any,
-    req: RequestWithUser,
+    req: Request,
     res: Response,
     next: NextFunction,
 ) {
@@ -14,7 +13,6 @@ export function exceptionFilter(
             message: err.message,
         })
     } else {
-        console.error(err)
         res.status(500).json({
             status: 'error',
             message: 'Internal Server Error',
