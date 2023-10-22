@@ -17,8 +17,6 @@ router.get("/", async (req: Request, res: Response, next: NextFunction) => {
 		page: string;
 	};
 
-	console.log(region, parseInt(errors), seed, page);
-
 	try {
 		if (parseInt(errors) > 1000) {
 			return res

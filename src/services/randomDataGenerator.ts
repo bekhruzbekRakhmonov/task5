@@ -61,7 +61,7 @@ async function generateErrors(
 
 	for (let i = 0; i < numErrors; i++) {
 		const errorType = Math.floor(seededRandom(seed + i.toString()) * 3);
-		console.log("error", errorType);
+
 		if (errorType === 0) {
 			if (modifiedAddress.length > 5 && modifiedName.length > 5) {
 				modifiedName = deleteRandomCharacter(
@@ -109,7 +109,7 @@ function generateRandomUsersData(localeCode: SupportedNats, seed: number, itemsC
 		const customFaker = localeInfo.fakerLocale;
 
 		customFaker.seed(seed);
-		console.log("Test:====>",customFaker.person.fullName())
+
 		for (let i = 0; i < itemsCount; i++) {
 			const user = {
 				randomIdentifier: customFaker.number.int(),
